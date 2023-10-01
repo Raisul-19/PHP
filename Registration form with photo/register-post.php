@@ -29,6 +29,9 @@
     $gender = $_POST['gender'];
     $photo = $_FILES['photo'];
 
+    date_default_timezone_set('asia/dhaka');
+    $created_at = date('Y-m-d h:i:s');
+
 
 
 
@@ -85,7 +88,7 @@
         if(in_array($extension, $allowed_extension)){
             if($uploaded_file['size'] <= 50000000){
 
-                $insert = "INSERT INTO users (name, email, password, gender) VALUES ('$name', '$email', '$pass', '$gender')";
+                $insert = "INSERT INTO users (name, email, password, gender, created_at) VALUES ('$name', '$email', '$pass', '$gender', '$created_at')";
                 $insert_result = mysqli_query($connection, $insert);
 
                 $user_id = mysqli_insert_id($connection);
@@ -107,12 +110,17 @@
             }
             else{
                 echo "File size is bigger";
+
+                $success = "Failed to submit !!!";
+                header('location:register.php?succ_msg='.$success);
             }
             
 
         }
         else{
             echo "This file extention not allowe";
+            $success = "Failed to submit !!!";
+            header('location:register.php?succ_msg='.$success);
         }
 
 
