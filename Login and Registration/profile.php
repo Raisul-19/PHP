@@ -21,6 +21,10 @@
                 </div>
                 <table class="table table-dark table-striped">
                     <tr>
+                        <td>PROFILE PHOTO : </td>
+                        <td><img src="upload/user/<?php echo $after_assoc['photo']; ?>" alt="" width="200"></td>
+                    </tr>
+                    <tr>
                         <td>ID :</td>
                         <td><?php echo $after_assoc['id'] ?></td>
                     </tr>

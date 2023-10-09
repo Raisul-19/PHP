@@ -26,6 +26,7 @@
                         <th>EMAIL</th>
                         <th>PASSWORD</th>
                         <th>GENDER</th>
+                        <th>PHOTO</th>
                         <th>ACTION</th>
                     </tr>
 
@@ -35,18 +36,51 @@
                             <td><?php echo $user_info['id'];  ?></td>
                             <td><?php echo $user_info['name'];  ?></td>
                             <td><?php echo $user_info['email'];  ?></td>
-                            <td><?php echo $user_info['password'];  ?></td>
+                            <td>********</td>
                             <td><?php echo $user_info['gender'];  ?></td>
+                            <td><img src="upload/user/<?php echo $user_info['photo'] ?>" alt="" width="50"></td>
                             <td>
                                 <a href="profile.php?id=<?php echo $user_info['id'];  ?>"><button class="btn btn-success">View</button></a>
                                 <a href="edit_user.php?id=<?php echo $user_info['id'];  ?>"><button class="btn btn-warning">Edite</button></a>
-                                <a href="delete_user.php?id=<?php echo $user_info['id'];  ?>"><button class="btn btn-danger">Delete</button></a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                        Delete
+                                </button>
                             </td>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    After delete , you can't get this data !!!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                    <a href="delete_user.php?id=<?php echo $user_info['id'] ?>" type="button" class="btn btn-primary">YES</a>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
                         </tr>
 
 
 
                     <?php  }  ?>
+
+
+                    <?php if($select_result->num_rows==0){ ?>
+                        <tr>
+                            <td colspan="6" class="text-center text-capitalize"><h3>no data available</h3></td>
+                        </tr>
+                    <?php } ?>
 
                 </table>
             </div>

@@ -9,7 +9,7 @@
         <div class="row py-5 mt-5">
             <div class="col-md-8 mx-auto bg-secondary py-3">
                 <h2 class="text-center text-white bg-success p-3">Registration Here</h2>
-                <form action="register-post.php" method="post">
+                <form action="register-post.php" method="post" enctype="multipart/form-data">
                     <div class="from-group my-3">
                         <input type="text" name="userName" placeholder="Enter your name..." class="form-control">
                     </div>
@@ -32,6 +32,9 @@
                         <input type="radio" name="gender" id="gender" value="Female">Female
                         <input type="radio" name="gender" id="gender" value="Others">Others
                     </div>
+                    <div class="form-group">
+                        <input type="file" name="photo" class="form-control">
+                    </div>
 
                     <div class="from-group mt-5 mb-3 row">
 
@@ -44,6 +47,18 @@
                         </div>
 
                         
+                    </div>
+
+                    <div class="">
+                        <div class="<?=(!empty($_GET['success'])?'alert alert-success':'') ?>" role="alert">
+                            <?php
+                                if(!empty($_GET['success'])){
+                                    echo $_GET['success'];
+                                }
+
+                            ?>
+                                
+                        </div>
                     </div>
 
 
