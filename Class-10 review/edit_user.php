@@ -25,19 +25,22 @@
                     <h3>Update Profile Information</h3>
                 </div>
                 <form action="update_user.php" method="post">
+
+                    <input type="hidden" class="form-control" name="id" value="<?php echo $after_assoc['id']; ?>">
+
                     <div class="form-group py-2">
-                        <input type="text" class="form-control" value="<?php echo $after_assoc['name']; ?>">
+                        <input type="text" class="form-control" name="fname" value="<?php echo $after_assoc['name']; ?>">
                     </div>
                     <div class="form-group py-2">
-                        <input type="email" class="form-control" value="<?php echo $after_assoc['email']; ?>">
+                        <input type="email" readonly class="form-control" name="email" value="<?php echo $after_assoc['email']; ?>">
                     </div>
                     <div class="form-group py-2 position-relative">
-                        <input type="password" class="form-control" id="passShow" value="<?php echo $after_assoc['password'] ?>">
+                        <input type="password" class="form-control" id="passShow" name="password" value="<?php echo $after_assoc['password'] ?>">
                         <button type="button" onclick="myFunction()" class="btn btn-success position-absolute" style="right: 0; top: 8px">Show</button>
                     </div>
                     <div class="form-group py-2 text-white text-center">
-                        <input type="radio" id="gender" name="gender" <?php if($after_assoc['gender']=='Male') {echo 'checked'; } ?> ><label for="gender">Male</label>
-                        <input type="radio" id="gender2" name="gender" <?php if($after_assoc['gender']=='Female') {echo 'checked'; } ?> ><label for="gender2">Female</label>
+                        <input type="radio" id="gender" name="gender" value="Male" <?php if($after_assoc['gender']=='Male') {echo 'checked'; } ?> ><label for="gender">Male</label>
+                        <input type="radio" id="gender2" name="gender" value="Female" <?php if($after_assoc['gender']=='Female') {echo 'checked'; } ?> ><label for="gender2">Female</label>
                     </div>
 
                     <button type="submit" class="btn btn-success my-3">Submit</button>

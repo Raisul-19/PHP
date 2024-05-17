@@ -41,11 +41,34 @@
                         <td>
                             <a href="profile.php?id=<?php echo $user_info['id']; ?>" class="btn btn-success">View</a>
                             <a href="edit_user.php?id=<?php echo $user_info['id']; ?>" class="btn btn-warning">Edit</a>
-                        
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user_info['id']; ?>">
+                                Delete
+                            </button>
+         
                         
                         </td>
 
                     </tr>
+
+                    
+                    <div class="modal fade" id="exampleModal<?php echo $user_info['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure to Delete ??</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                                Deleted file can not be recover  !!!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <a href="delete_user.php?id=<?php echo $user_info['id']; ?>" class="btn btn-danger">Yes</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 
                 <?php } ?>
 
@@ -55,7 +78,6 @@
         </div>
     </div>
 </section>
-
 
 
 
