@@ -43,8 +43,10 @@
                             ?>
                         </div>
                     </div>
-                    <div class="form-group py-2">
-                        <input type="password" class="form-control" name="password" placeholder="Creat a password...">
+                    <div class="form-group py-2 position-relative">
+                        <input type="password" id="passShow" class="form-control" name="password" placeholder="Creat a password...">
+
+                        <button type="button" onclick="myFunction()" class="btn btn-success position-absolute" style="right: 0; top: 8px">Show</button>
 
                         <div class="error_msg text-danger">
                             <?php
@@ -101,6 +103,8 @@
             </div>
         </div>
     </div>
+
+
 </section>
 
 
@@ -109,6 +113,17 @@
 <!-- form design end -->
 
 
+
+<script>
+        function myFunction() {
+        var x = document.getElementById("passShow");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+</script>
 
 
 

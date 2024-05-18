@@ -29,9 +29,24 @@
 
                 <table class="table table-striped table-primary">
                     <tr>
-                        <td>ID</td>
-                        <td></td>
-
+                        <td>ID : </td>
+                        <td><?php echo $after_assoc['id'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>NAME : </td>
+                        <td><?php echo $after_assoc['name'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>EMAIL : </td>
+                        <td><?php echo $after_assoc['email'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>PASSWORD : </td>
+                        <td><?php echo $after_assoc['password'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>GENDER : </td>
+                        <td><?php echo $after_assoc['gender'] ?></td>
                     </tr>
 
                 </table>

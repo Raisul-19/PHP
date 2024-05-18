@@ -39,10 +39,30 @@
                             <td><?php echo $user_info['gender'] ?></td>
                             <td class="text-center">
                                 <a href="profile.php?id=<?php echo $user_info['id'] ?>" class="btn btn-info">View</a>
-                                <a href="#" class="btn btn-warning">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <a href="edit_user.php?id=<?php echo $user_info['id'] ?>" class="btn btn-warning">Edit</a>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user_info['id'] ?>">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
+
+                        <div class="modal fade" id="exampleModal<?php echo $user_info['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Are Your Sure to Delete</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                After deleted this file cann't be recover .
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Not Yet</button>
+                                <a href="delete_user.php?id=<?php echo $user_info['id'] ?>" class="btn btn-danger">Delete</a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
 
                     <?php } ?>
 
