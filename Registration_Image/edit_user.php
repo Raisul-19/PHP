@@ -25,7 +25,7 @@
                     <h3>Update User Information</h3>
                 </div>
 
-                <form action="update_user.php" method="post">
+                <form action="update_user.php" method="post" enctype="multipart/form-data">
                     <div class="form-group py-2">
 
                         <input type="hidden" name="id" value="<?php echo $after_assoc['id'] ?>">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group py-2 text-center text-white">
                         <input type="radio"  name="gender" id="male" value="Male" <?php if($after_assoc['gender']=='Male'){ echo 'checked';} ?>><label for="male">Male</label>
-                        <input type="radio"  name="gender" id="female" value="Femal" <?php if($after_assoc['gender']=='Female'){ echo 'checked';} ?>><label for="female">Female</label>
+                        <input type="radio"  name="gender" id="female" value="Female" <?php if($after_assoc['gender']=='Female'){ echo 'checked';} ?>><label for="female">Female</label>
                         <input type="radio"  name="gender" id="others" value="Others" <?php if($after_assoc['gender']=='Others'){ echo 'checked';} ?> ><label for="others">Others</label>
 
 
