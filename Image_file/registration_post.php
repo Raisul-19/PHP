@@ -62,11 +62,39 @@ else if(empty($gender)){
 
 else{
 
-    $insert = "INSERT INTO users(name, email, password, gender) VALUES ('$name', '$email', '$password', '$gender')";
-    $insert_result = mysqli_query($db_connection, $insert);
+    $uploaded_photo = $_FILES['photo'];
+    $after_explode = explode('.', $uploaded_photo['name']);
+    $extension = end($after_explode);
+    $allowed_extension = array('jpg', 'jpeg', 'png', 'gif');
 
-    $success_msg = 'Successfully submited !!!';
-    header('location:registration.php?success='.$success_msg);
+    if(in_array($extension, $allowed_extension)){
+        if($uploaded_photo['size'] <= 500000){
+
+            $insert = "INSERT INTO users(name, email, password, gender) VALUES ('$name', '$email', '$password', '$gender')";
+            $insert_result = mysqli_query($db_connection, $insert);
+
+            $user_id = mysqli_insert_id($db_connection);
+            $file_name = $user_id.'.'.$extension;
+            $new_location = "uploads/users/".$file_name;
+            move_uploaded_file($uploaded_photo['tmp_name'], $new_location);
+
+            $update = "UPDATE users SET Photo='$file_name' WHERE id=$user_id";
+            $update_result = mysqli_query($db_connection, $update);
+
+            $success_msg = 'Successfully submited !!!';
+            header('location:registration.php?success='.$success_msg);
+
+
+
+        }
+        else{
+            echo "This image file size is big";
+        }
+
+    }
+    else{
+        echo "This Image file is not allowed !";
+    }
 
 
 }

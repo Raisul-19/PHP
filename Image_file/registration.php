@@ -16,7 +16,7 @@
                     <h2>Registration Here </h2>
                 </div>
 
-                <form action="registration_post.php" method="post">
+                <form action="registration_post.php" method="post" enctype="multipart/form-data">
                     <div class="form-group py-2">
                         <input type="text" class="form-control" name="fname" placeholder="Enter your name...">
 
@@ -86,6 +86,14 @@
                             ?>
                         </div>
                     </div>
+
+                    <div class="form-group py-2">
+                        <p>Select Profile Picture</p>
+                        
+                        <input type="file" name="photo" class="form-control">
+                        
+                    </div>
+
 
                     <button type="submit" class="btn btn-success mt-5">Submit</button>
 
