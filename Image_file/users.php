@@ -15,7 +15,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 m-auto my-5 py-3">
+            <div class="col-lg-12 m-auto my-5 py-3">
                 <div class="header text-center py-2 bg-success text-white">
                     <h3>Users Information</h3>
                 </div>
@@ -28,6 +28,7 @@
                         <th>PASSWORD</th>
                         <th>GENDER</th>
                         <th>PHOTO</th>
+                        <th>CREATED</th>
                         <th class="text-center">ACTION</th>
                     </tr>
                     <?php foreach($select_result as $user_info){  ?>
@@ -41,6 +42,7 @@
                             <td>
                                 <img src="uploads/users/<?php echo $user_info['photo'] ?>" alt="photo" width="50">
                             </td>
+                            <td><?php echo $user_info['created_at'] ?></td>
                             <td class="text-center">
                                 <a href="profile.php?id=<?php echo $user_info['id'] ?>" class="btn btn-info">View</a>
                                 <a href="edit_user.php?id=<?php echo $user_info['id'] ?>" class="btn btn-warning">Edit</a>
