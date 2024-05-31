@@ -24,6 +24,9 @@
     <div class="container">
         <div class="row py-5">
             <div class="col-lg-12">
+                <div class="logout position-absolute ">
+                    <a href="logout.php" class="btn btn-primary">Log Out</a>
+                </div>
                 <div class="header text-center text-white bg-secondary py-2">
                     <h3>Users Information</h3>
                 </div>
@@ -82,6 +85,13 @@
                     </div>
                     </div>
                 
+                <?php } ?>
+
+                <?php if($select_result->num_rows==0){ ?>
+
+                    <tr>
+                        <td>No Data Found</td>
+                    </tr>
                 <?php } ?>
 
                 </table>
