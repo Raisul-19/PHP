@@ -1,5 +1,6 @@
 <?php
-
+    
+    require 'session-check.php';
     require 'header.php';
     require 'db.php';
 

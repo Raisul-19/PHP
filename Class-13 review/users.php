@@ -1,5 +1,13 @@
 <?php
 
+    if(!isset($_COOKIE['nam'])){
+        header('location:login.php');
+    }
+    else{
+        setcookie('nam', 'valu', time()+(60*2));
+    }
+
+    require 'session-check.php';
     require 'header.php';
     require 'db.php';
 
