@@ -28,6 +28,11 @@
 
     $gender = $_POST['gender'];
     $photo = $_FILES['photo'];
+    
+
+    $select = "SELECT COUNT(*) as exist_email FROM users WHERE email=$email";
+    $select_result = mysqli_query($db_connection, $select);
+    $after_assoc = mysqli_fetch_assoc($select_result);
 
 
 
@@ -84,23 +89,27 @@
         if(in_array($extension, $allowed_extension)){
             if($uploaded_file['size'] <= 50000000){
 
-                $insert = "INSERT INTO users (name, email, password, gender) VALUES ('$name', '$email', '$pass', '$gender')";
-                $insert_result = mysqli_query($connection, $insert);
-
-                $user_id = mysqli_insert_id($connection);
-                $file_name = $user_id.'.'.$extension;
-                $new_location = "upload/user/".$file_name;
-
-                move_uploaded_file($uploaded_file['tmp_name'], $new_location);
-
-                $update = "UPDATE users SET photo='$file_name' WHERE id=$user_id";
-                $update_result = mysqli_query($connection, $update);
-
-
-                $success = "Successfully Registered !!!";
-                header('location:register.php?succ_msg='.$success);
-
-
+                if($after_assoc['exist_email']==1){
+                    $_SESSION['exist'] = 'This Email Already Exist';
+                    header('location:register.php');
+                }
+                else{
+                    $insert = "INSERT INTO users (name, email, password, gender) VALUES ('$name', '$email', '$pass', '$gender')";
+                    $insert_result = mysqli_query($connection, $insert);
+    
+                    $user_id = mysqli_insert_id($connection);
+                    $file_name = $user_id.'.'.$extension;
+                    $new_location = "upload/user/".$file_name;
+    
+                    move_uploaded_file($uploaded_file['tmp_name'], $new_location);
+    
+                    $update = "UPDATE users SET photo='$file_name' WHERE id=$user_id";
+                    $update_result = mysqli_query($connection, $update);
+    
+    
+                    $success = "Successfully Registered !!!";
+                    header('location:register.php?succ_msg='.$success);
+                }
 
 
             }
