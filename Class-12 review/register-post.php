@@ -88,7 +88,7 @@
         $uploded_file = $_FILES['photo'];
         $after_explode = explode('.', $uploded_file['name']);
         $extension = end($after_explode);
-        $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
+        $allowed_extension = array('jpg', 'jpeg', 'gif', 'png');
 
         if(in_array($extension, $allowed_extension)){
             if($uploded_file['size'] <= 500000){
@@ -100,32 +100,65 @@
                 $file_name = $insert_id.'.'.$extension;
                 $new_location = "uploads/users/".$file_name;
 
-                move_uploaded_file($uploded_file['tmp_name'], $new_location);
+                move_uploaded_file($uploaded_file['tmp_name'], $new_location);
 
-                $update = "UPDATE users SET photo='$file_name' WHERE id=$insert_id";
+                $update = "UPDATE users SET photo='$file_name' WHERE id=$id";
                 $update_result = mysqli_query($db_connection, $update);
 
-                $success = 'Successfully Registered !!!';
+                $success = "Succesfully Registered !!!";
                 header('location:register.php?success='.$success);
 
-
             }
-
             else{
-                echo 'This file size is big';
+                echo "this file size i very big";
             }
 
         }
-
         else{
-            echo 'This Extension is not allowed';
+            echo "this file type is not allowed";
         }
 
+    //     $uploded_file = $_FILES['photo'];
+    //     $after_explode = explode('.', $uploded_file['name']);
+    //     $extension = end($after_explode);
+    //     $allowed_extension = array('jpg', 'png', 'jpeg', 'gif');
+
+    //     if(in_array($extension, $allowed_extension)){
+    //         if($uploded_file['size'] <= 500000){
+
+    //             $insert = "INSERT INTO users (name, email, password, gender) VALUES ('$name', '$email', '$password', '$gender')";
+    //             $insert_result = mysqli_query($db_connection, $insert);
+
+    //             $insert_id = mysqli_insert_id($db_connection);
+    //             $file_name = $insert_id.'.'.$extension;
+    //             $new_location = "uploads/users/".$file_name;
+
+    //             move_uploaded_file($uploded_file['tmp_name'], $new_location);
+
+    //             $update = "UPDATE users SET photo='$file_name' WHERE id=$insert_id";
+    //             $update_result = mysqli_query($db_connection, $update);
+
+    //             $success = 'Successfully Registered !!!';
+    //             header('location:register.php?success='.$success);
+
+
+    //         }
+
+    //         else{
+    //             echo 'This file size is big';
+    //         }
+
+    //     }
+
+    //     else{
+    //         echo 'This Extension is not allowed';
+    //     }
 
 
 
 
-    }
+
+        }
 
 
 ?>
