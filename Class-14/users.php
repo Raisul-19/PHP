@@ -1,108 +1,98 @@
 <?php
 
-    if(!isset($_COOKIE['name'])){
+    if(!isset($_COOKIE['nam'])){
         header('location:login.php');
     }
     else{
-        setcookie('name', 'value', time()+30);
+        setcookie('nam', 'valu', time()+(60*2));
     }
 
     require 'session-check.php';
     require 'header.php';
-    require 'database.php';
+    require 'db.php';
 
 ?>
 
 <?php
 
-$select = "SELECT * FROM users ORDER by id DESC"; // for desending order
-
-$select_result = mysqli_query($connection, $select);
-
+    $select = "SELECT * FROM users ORDER by id DESC";
+    $select_result = mysqli_query($db_connection, $select);
 
 ?>
 
 <section>
     <div class="container">
-        <div class="row p-5">
-            <div class="col-md-12">
-                <div class="position-absolute">
-                    <a href="logout.php" class="btn btn-danger">LogOut</a>
+        <div class="row py-5">
+            <div class="col-lg-12">
+                <div class="logout position-absolute ">
+                    <a href="logout.php" class="btn btn-primary">Log Out</a>
                 </div>
-                <div class="head text-center py-3 bg-secondary text-white">
-                    <h3>Users Information List</h3>
+                <div class="header text-center text-white bg-secondary py-2">
+                    <h3>Users Information</h3>
                 </div>
-
                 <table class="table table-dark table-striped">
+
                     <tr>
-                        <th>ID</th>
+                        <th>Id</th>
                         <th>NAME</th>
                         <th>EMAIL</th>
                         <th>PASSWORD</th>
                         <th>GENDER</th>
                         <th>PHOTO</th>
-                        <th>ACTION</th>
+                        <th>CREATED TIME</th>
+                        <th class="text-center">ACTION</th>
                     </tr>
 
-                    <?php foreach($select_result as $user_info){ ?>
-
-                        <tr>
-                            <td><?php echo $user_info['id'] ?></td>
-                            <td><?php echo $user_info['name'] ?></td>
-                            <td><?php echo $user_info['email'] ?></td>
-                            <!-- <td> <?php // echo $user_info['password'] ?></td> -->
-                            <td>********</td>
-                            <td><?php echo $user_info['gender'] ?></td>
-                            <td><img src="upload/user/<?php echo $user_info['photo'] ?>" alt="" width="50"></td>
-                            <td>
-                                <a href="single-view.php?id=<?php echo $user_info['id'] ?>"><button class="btn btn-success">View</button></a>
-
-                                <a href="edit-user.php?id=<?php echo $user_info['id'] ?>"><button class="btn btn-warning">Edit</button></a>
-
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user_info['id'] ?>">
-                                    Delete
-                                </button>
-
-
-                            </td>
-                            
-                        </tr>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal<?php echo $user_info['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete this?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                    Delete korle kintu ar fire pabu na !!
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Vul Hoise</button>
-                                <a href="delete-user.php?id=<?php echo $user_info['id'] ?>" type="button" class="btn btn-danger">Abar Jigay</a>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-
-
-
-                    <?php } ?>
-
-                    <?php
-                    if($select_result->num_rows==0){  ?>
+                <?php foreach($select_result as $user_info) {  ?>
 
                     <tr>
-                        <td colspan="7" class="text-center"><h3>No Data Available.</h3></td>
+                        <td><?php echo $user_info['id']; ?></td>
+                        <td><?php echo $user_info['name']; ?></td>
+                        <td><?php echo $user_info['email']; ?></td>
+                        <td><?php echo "********"; ?></td>
+                        <td><?php echo $user_info['gender']; ?></td>
+                        <td><img src="uploads/users/<?php echo $user_info['photo']; ?>" alt="Photo" width="50"></td>
+                        <td><?php echo $user_info['created_at']; ?></td>
+                        <td class="text-center">
+                            <a href="profile.php?id=<?php echo $user_info['id']; ?>" class="btn btn-success">View</a>
+                            <a href="edit_user.php?id=<?php echo $user_info['id']; ?>" class="btn btn-warning">Edit</a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user_info['id']; ?>">
+                                Delete
+                            </button>
+         
+                        
+                        </td>
+
                     </tr>
 
-                   <?php  }  ?>
+                    
+                    <div class="modal fade" id="exampleModal<?php echo $user_info['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure to Delete ??</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                                Deleted file can not be recover  !!!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <a href="delete_user.php?id=<?php echo $user_info['id']; ?>" class="btn btn-danger">Yes</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                
+                <?php } ?>
 
+                <?php if($select_result->num_rows==0){ ?>
 
-
+                    <tr>
+                        <td>No Data Found</td>
+                    </tr>
+                <?php } ?>
 
                 </table>
 
@@ -113,12 +103,8 @@ $select_result = mysqli_query($connection, $select);
 
 
 
-
-
-
-
 <?php
 
-require 'footer.php';
+    require 'footer.php';
 
 ?>

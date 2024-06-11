@@ -1,27 +1,27 @@
 <?php
-session_start();
 
-require 'database.php';
+    session_start();
+    require 'db.php';
 
 
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-$email = $_POST['email'];
-$pass = $_POST['password'];
+    $select = "SELECT COUNT(*) as login FROM users WHERE email='$email' and password='$password'";
+    $select_result = mysqli_query($db_connection, $select);
+    $after_assoc = mysqli_fetch_assoc($select_result);
+ 
 
-$select = "SELECT COUNT(*) as login FROM users WHERE email='$email' and password='$pass'";
-$select_result = mysqli_query($connection, $select);
-$after_assoc = mysqli_fetch_assoc($select_result);
+    if($after_assoc['login']==1){
 
-if($after_assoc['login']==1){
-    $_SESSION['loged_in'] = "loged IN";
-    setcookie('name', 'value', time()+180);
-    header('location:users.php');
-}
-else{
-    $_SESSION['login_error'] = "Invalid email or password";
-    header('location:login.php');
-}
-
+        $_SESSION['login'] = "loged In";
+        setcookie('nam', 'valu', time()+(120));
+        header('location:users.php');
+    }
+    else{
+        $_SESSION['login_error'] = "Invalid Email or Password";
+        header('location:login.php');
+    }
 
 
 ?>
