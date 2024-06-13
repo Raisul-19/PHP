@@ -14,7 +14,7 @@
                 <div class="header text-center bg-primary mt-3 py-2 text-white">
                     <h2>Register Here</h2>
                 </div>
-                <form action="">
+                <form action="register-post.php" method="post" enctype="multipart/form-data">
                     <div class="py-3">
                         <input type="text" name="fname" class="form-control" placeholder="Enter your name...">
                     </div>
