@@ -45,8 +45,8 @@
                         </td>
                         <td><?php echo $user_info['created_at']; ?></td>
                         <td class="text-center">
-                            <a href="#" class="btn btn-primary">View</a>
-                            <a href="#" class="btn btn-warning">Edit</a>
+                            <a href="profile.php?id=<?php echo $user_info['id']; ?>" class="btn btn-primary">View</a>
+                            <a href="edit-users.php?id=<?php echo $user_info['id']; ?>" class="btn btn-warning">Edit</a>
                            
                              <!-- Button trigger modal -->
                              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user_info['id'] ?>">
@@ -75,9 +75,7 @@
 
                     </tr>
 
-                    
-
-
+                
 
                 <?php } ?>
 
