@@ -7,7 +7,7 @@
 
 <?php
 
-    $select = "SELECT * FROM users";
+    $select = "SELECT * FROM users ORDER by id DESC";
     $select_result = mysqli_query($db_connection, $select);
 
 
@@ -41,16 +41,43 @@
                         <td><?php echo $user_info['gender']; ?></td>
                        
                         <td>
-                            <img src="uploads/users/<?php echo $user_info['photo']; ?>" alt="photo" width="50">
+                            <img src="uploads/users/<?php echo $user_info['photo']; ?>" alt="photo" width="50" height="50">
                         </td>
                         <td><?php echo $user_info['created_at']; ?></td>
                         <td class="text-center">
                             <a href="#" class="btn btn-primary">View</a>
                             <a href="#" class="btn btn-warning">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                           
+                             <!-- Button trigger modal -->
+                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user_info['id'] ?>">
+                                    Delete
+                                </button>
                         </td>
 
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal<?php echo $user_info['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete this?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                        After delete , you can not find this !!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Not Yet</button>
+                                    <a href="delete-users.php?id=<?php echo $user_info['id'] ?>" type="button" class="btn btn-danger">Yes</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </tr>
+
+                    
+
+
 
                 <?php } ?>
 
