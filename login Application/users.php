@@ -48,10 +48,10 @@
                             <a href="profile.php?id=<?php echo $user_info['id']; ?>" class="btn btn-primary">View</a>
                             <a href="edit-users.php?id=<?php echo $user_info['id']; ?>" class="btn btn-warning">Edit</a>
                            
-                             <!-- Button trigger modal -->
-                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user_info['id'] ?>">
-                                    Delete
-                                </button>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user_info['id'] ?>">
+                                Delete
+                            </button>
                         </td>
 
                           <!-- Modal -->
