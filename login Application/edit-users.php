@@ -25,16 +25,16 @@
                 <h2>Update Users Information</h2>
             </div>
 
-            <form action="update-users.php" method="post">
-                <input type="hidden" class="form-control" value="<?php echo $after_assoc['id'] ?>">
+            <form action="update-users.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" class="form-control" value="<?php echo $after_assoc['id']; ?>">
                 <div class="py-2">
-                    <input type="text" class="form-control" name="fname" value="<?php echo $after_assoc['name'] ?>">
+                    <input type="text" class="form-control" name="fname" value="<?php echo $after_assoc['name']; ?>">
                 </div>
                 <div class="py-2">
-                    <input type="email" readonly class="form-control" name="email" value="<?php echo $after_assoc['email'] ?>">
+                    <input type="email" readonly class="form-control" name="email" value="<?php echo $after_assoc['email']; ?>">
                 </div>
                 <div class="py-2">
-                    <input type="password" class="form-control" name="password" value="<?php echo $after_assoc['password'] ?>">
+                    <input type="password" class="form-control" name="password" value="<?php echo $after_assoc['password']; ?>">
                 </div>
                 <div class="py-2 text-white text-center">
                     <input type="radio" name="gender" id="male" value="male" <?=($after_assoc['gender']=='male')?'checked':''; ?>><label for="male">Male</label>
@@ -45,9 +45,11 @@
                     <p>Profile Picture</p>
                     <img src="uploads/users/<?php echo $after_assoc['photo']; ?>" alt="missing photo" height="200">
 
-
-
                 </div>
+                <div class="py-2">
+                    <input type="file" name="photo" class="form-control">
+                </div>
+
 
                 <div class="py-2 text-center">
                     <button type="submit" class="btn btn-primary">Update</button>
