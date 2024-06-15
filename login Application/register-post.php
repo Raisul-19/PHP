@@ -50,6 +50,8 @@
 
     else{
 
+
+
         $uploaded_file = $_FILES['photo'];
         $after_explode = explode('.', $uploaded_file['name']);
         $extension = end($after_explode);
@@ -59,6 +61,7 @@
 
                 $insert = "INSERT INTO users (name, email, password, gender) VALUES ('$name', '$email', '$password', '$gender')";
                 $insert_result = mysqli_query($db_connection, $insert);
+
 
                 $user_id = mysqli_insert_id($db_connection);
                 $file_name = $user_id.'.'.$extension;
@@ -84,11 +87,6 @@
         }
 
 
-        $insert = "INSERT INTO users (name, email, password, gender) VALUES ('$name', '$email', '$password', '$gender')";
-        $insert_result = mysqli_query($db_connection, $insert);
-
-        $success_msg = "Successfully Submited Information !";
-        header('location:register.php?success='.$success_msg);
     }
 
 
