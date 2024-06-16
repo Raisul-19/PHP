@@ -37,8 +37,9 @@
                         </div>
                     </div>
 
-                    <div class="py-3">
-                        <input type="password" name="password" class="form-control" placeholder="Creat your password...">
+                    <div class="py-3 showBtn">
+                        <input type="password" name="password" class="form-control" placeholder="Creat your password..." id="passShow">
+                        <button type="button" onclick="myFunction()" class="btn btn-success">Show</button>
                         <div class="err_msg text-center text-danger">
                             <?php
                                 if(!empty($_GET['password_error'])){
